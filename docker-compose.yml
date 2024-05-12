@@ -1,0 +1,23 @@
+services:
+  mongodb:
+  image: mongo
+  container_name: mongo_db
+  ports:
+    - 27017:27017
+  volumes:
+  - mongo:/data
+  environment:
+  - MONGO_INITDB_ROOT_USERNAME= lemon
+  - MONGO_INITDB_ROOT_PASSWORD= lemon123
+  mongo-express:
+    image: mongo-express
+    container_name: mongo_express
+    restart: always
+    ports:
+      -8081:8081
+    environment:
+      - ME-CONFIG_MONGODB_ADMINUSERNAME= lemon
+      - ME-CONFIG_MONGODB_ADMINPASSWORD= lemon123
+      - ME-CONFIG_MONGODB_SERVER= mongodb
+volumes:
+  mongo:{}
